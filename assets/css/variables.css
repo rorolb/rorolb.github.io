@@ -1,0 +1,38 @@
+:root {
+    --primary-color: #ffffff;
+    --secondary-color: #f8fafc;
+    --accent-color: #3b82f6;
+    --text-light: #1e293b;
+    --text-dark: #0f172a;
+    --text-color: #334155;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+    --border-radius: 12px;
+    --header-height: 80px;
+    --container-width: 1200px;
+    
+    /* Дополнительные цвета для светлой темы */
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --border-color: rgba(226, 232, 240, 0.8);
+    --hover-color: #f1f5f9;
+    --gradient-primary: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    --gradient-secondary: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+/* Тёмная тема */
+[data-theme="dark"] {
+    --primary-color: #0a0f2d;
+    --secondary-color: #111827;
+    --accent-color: #60a5fa;
+    --text-light: #e2e8f0;
+    --text-dark: #f1f5f9;
+    --text-color: #cbd5e1;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    
+    /* Дополнительные цвета для тёмной темы */
+    --card-bg: rgba(30, 41, 59, 0.9);
+    --border-color: rgba(71, 85, 105, 0.6);
+    --hover-color: rgba(71, 85, 105, 0.3); /* Тёмный hover вместо белого */
+    --gradient-primary: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}

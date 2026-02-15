@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой профиль - NovorosyMap</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --accent-color: #0d6efd;
+            --secondary-color: #6f42c1;
+            --border-color: #dee2e6;
+            --success-color: #198754;
+            --warning-color: #ffc107;
+        }
+
+        body.dark {
+            --bg-primary: #1a1d23;
+            --bg-secondary: #242930;
+            --bg-tertiary: #2d3239;
+            --text-primary: #f8f9fa;
+            --text-secondary: #adb5bd;
+            --border-color: #495057;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: var(--bg-primary);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 0.2rem;
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: var(--accent-color);
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-tertiary);
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 120px 0 60px;
+            background: var(--bg-secondary);
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .user-card {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .user-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 48px;
+            color: white;
+        }
+
+        .user-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .user-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stats-section {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+        }
+
+        .quiz-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-stat-card {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .quiz-stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .quiz-stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .progress-item {
+            margin-bottom: 20px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .progress-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .progress-value {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .achievements-section {
+            background: var(--bg-primary);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 20px;
+        }
+
+        .achievement-item {
+            text-align: center;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .achievement-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .achievement-item.unlocked {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .achievement-item.unlocked .achievement-name {
+            color: white;
+            font-weight: 600;
+        }
+
+        .achievement-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 10px;
+            border-radius: 10px;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(1) brightness(0.7);
+            opacity: 0.6;
+            border: 2px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-item.unlocked .achievement-icon {
+            filter: none;
+            opacity: 1;
+            border-color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+        }
+
+        .achievement-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .achievement-name {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            line-height: 1.3;
+            min-height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .locked {
+            position: relative;
+        }
+
+        .locked::after {
+            content: "🔒";
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 12px;
+            filter: grayscale(1);
+            opacity: 0.7;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .achievement-item.unlocked .locked::after {
+            display: none;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: var(--bg-primary);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3, .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .footer-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-contact .contact-line {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-legal a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 100;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .user-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .quiz-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                gap: 15px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav ul {
+                gap: 1rem;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loading::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: inherit;
+        }
+
+        .loading::before {
+            content: "Загрузка...";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>NovorosyMap</h1>
+                    <p>Интерактивная карта областей</p>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index.html#about">О проекте</a></li>
+                        <li><a href="index.html#map">Карта</a></li>
+                        <li><a href="index.html#contacts">Контакты</a></li>
+                        <li><a href="my.html" class="active">Мой профиль</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="profile-container">
+            <div class="profile-header">
+                <h2 class="section-title">Мой профиль</h2>
+                <p class="section-subtitle">Статистика и достижения</p>
+            </div>
+
+            <div class="profile-content">
+                <!-- User Info Card -->
+                <div class="user-card">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-name" id="userName">Загрузка...</div>
+                    <div class="user-rank" id="userRank" style="color: var(--accent-color); margin-bottom: 20px;">
+                        <i class="fas fa-star"></i> <span id="rankText">Загрузка...</span>
+                    </div>
+                    
+                    <div class="user-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="quizCount">0</div>
+                            <div class="stat-label">Пройдено квизов</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="regionsCount">0</div>
+                            <div class="stat-label">Изучено регионов</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Section -->
+                <div class="stats-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-chart-bar"></i>Статистика квиза
+                    </h3>
+                    
+                    <div class="quiz-stats">
+                        <div class="quiz-stat-card">
+                            <div class="quiz-stat-value" id="totalScore">0</div>
+                            <div class="quiz-stat-label">Всего очков</div>
+                        </div>
+                        <div class="quiz-stat-card">
+                            <div class="quiz-stat-value" id="avgScore">0%</div>
+                            <div class="quiz-stat-label">Средний результат</div>
+                        </div>
+                        <div class="quiz-stat-card">
+                            <div class="quiz-stat-value" id="bestScore">0</div>
+                            <div class="quiz-stat-label">Лучший результат</div>
+                        </div>
+                        <div class="quiz-stat-card">
+                            <div class="quiz-stat-value" id="totalTime">0</div>
+                            <div class="quiz-stat-label">Общее время (сек)</div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Прогресс по истории Новороссии</span>
+                            <span class="progress-value" id="quizProgress">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="quizProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">Время прохождения</span>
+                            <span class="progress-value" id="timeProgress">0 сек</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="timeProgressBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements Section -->
+            <div class="achievements-section">
+                <h3 class="section-title">
+                    <i class="fas fa-trophy"></i>Мои достижения
+                </h3>
+                <p style="color: var(--text-secondary); margin-bottom: 25px;">
+                    Собирайте достижения, проходя квизы и изучая регионы
+                </p>
+                
+                <div class="achievements-grid" id="achievementsGrid">
+                    <!-- Достижения будут загружены через JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- О проекте -->
+                <div class="footer-section">
+                    <h3>NovorosyMap</h3>
+                    <p class="footer-description">
+                        Интерактивная платформа для изучения культурного наследия и истории различных регионов страны.
+                        Откройте уникальные истории каждого уголка нашей родины.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="VKontakte">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Навигация -->
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="index.html#about">О проекте</a></li>
+                        <li><a href="index.html#map">Интерактивная карта</a></li>
+                        <li><a href="index.html#contacts">Обратная свяж</a></li>
+                        <li><a href="my.html">Мой профиль</a></li>
+                    </ul>
+                </div>
+
+                <!-- Контакты -->
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <div class="footer-contact">
+                        <div class="contact-line">
+                            <i class="fas fa-envelope"></i>
+                            <span>alexsey.websites.work@gmail.com</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (987) 957-38-49</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>г. о. Докучаевск</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 онлайн</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    &copy; <span id="currentYear">2024</span> NovorosyMap. Все права защищены.
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Условия использования</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Кнопка "Наверх" -->
+    <button class="back-to-top" id="backToTop" aria-label="Вернуться наверх">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Конфигурация Supabase
+        const SUPABASE_URL = 'https://xlrmxinwpwjjurltvoms.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhscm14aW53cHdqanVybHR2b21zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI3ODY3NjYsImV4cCI6MjA3ODM2Mjc2Nn0.1dUPUXBfmN3cMTkAQVHWgXdhU74hJ6U96v1M_OSoZyI';
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Данные достижений с картинками из папки minecraft_icons
+        const achievementsData = [
+            { id: 'quiz1', name: 'Первая викторина', image: 'assets/img/minecraft_icons/1.png' },
+            { id: 'quiz3', name: 'Третья викторина', image: 'assets/img/minecraft_icons/2.png' },
+            { id: 'quiz5', name: 'Пятая викторина', image: 'assets/img/minecraft_icons/3.png' },
+            { id: 'dnr', name: 'Знаток ДНР', image: 'assets/img/minecraft_icons/4.png' },
+            { id: 'lnr', name: 'Знаток ЛНР', image: 'assets/img/minecraft_icons/5.png' },
+            { id: 'zaporoj', name: 'Знаток Запорожья', image: 'assets/img/minecraft_icons/6.png' },
+            { id: 'herson', name: 'Знаток Херсона', image: 'assets/img/minecraft_icons/7.png' },
+            { id: 'krim', name: 'Знаток Крыма', image: 'assets/img/minecraft_icons/8.png' },
+            { id: '100score', name: 'Отличник', image: 'assets/img/minecraft_icons/9.png' },
+            { id: '0score', name: 'Новичок', image: 'assets/img/minecraft_icons/10.png' },
+            { id: '1place', name: 'Первое место', image: 'assets/img/minecraft_icons/11.png' },
+            { id: '2place', name: 'Второе место', image: 'assets/img/minecraft_icons/12.png' },
+            { id: '3place', name: 'Третье место', image: 'assets/img/minecraft_icons/13.png' },
+            { id: '1_3place', name: 'В тройке лучших', image: 'assets/img/minecraft_icons/14.png' },
+            { id: '30second', name: 'Скоростник', image: 'assets/img/minecraft_icons/15.png' }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Установка текущего года в футере
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Загрузка данных пользователя
+            loadUserData();
+            
+            // Инициализация темы
+            initTheme();
+            
+            // Инициализация кнопки "Наверх"
+            initBackToTop();
+        });
+
+        // Загрузка данных пользователя
+        async function loadUserData() {
+            try {
+                // Получаем имя пользователя из localStorage
+                const playerName = localStorage.getItem('quizPlayerName') || 'Гость';
+                document.getElementById('userName').textContent = playerName;
+
+                // Загружаем статистику из базы данных
+                const { data: userResults, error } = await supabase
+                    .from('leaderboard')
+                    .select('*')
+                    .eq('name', playerName);
+
+                if (error) {
+                    console.error('Ошибка загрузки данных:', error);
+                    return;
+                }
+
+                // Обрабатываем статистику
+                processUserStats(userResults, playerName);
+                
+                // Загружаем достижения
+                loadAchievements(playerName);
+                
+            } catch (error) {
+                console.error('Ошибка:', error);
+                document.getElementById('userName').textContent = 'Ошибка загрузки';
+            }
+        }
+
+        // Обработка статистики пользователя
+        function processUserStats(results, playerName) {
+            if (!results || results.length === 0) {
+                // Если результатов нет, показываем нулевую статистику
+                updateStatsDisplay(0, 0, 0, 0, 0, 0, 'Новичок');
+                return;
+            }
+
+            // Подсчет статистики
+            const quizCount = results.length;
+            const regions = new Set(results.map(r => r.region)).size;
+            const totalScore = results.reduce((sum, r) => sum + r.score, 0);
+            const bestScore = Math.max(...results.map(r => r.score));
+            const totalTime = results.reduce((sum, r) => sum + r.time_seconds, 0);
+            const avgScore = Math.round(totalScore / quizCount);
+            
+            // Определение ранга
+            let rank = 'Новичок';
+            if (quizCount >= 10) rank = 'Эксперт';
+            else if (quizCount >= 5) rank = 'Любитель';
+            else if (quizCount >= 1) rank = 'Новичок';
+
+            // Обновление отображения
+            updateStatsDisplay(quizCount, regions, totalScore, avgScore, bestScore, totalTime, rank);
+            
+            // Обновление прогресс-баров
+            updateProgressBars(quizCount, totalTime);
+        }
+
+        // Обновление отображения статистики
+        function updateStatsDisplay(quizCount, regions, totalScore, avgScore, bestScore, totalTime, rank) {
+            document.getElementById('quizCount').textContent = quizCount;
+            document.getElementById('regionsCount').textContent = regions;
+            document.getElementById('totalScore').textContent = totalScore;
+            document.getElementById('avgScore').textContent = avgScore + '%';
+            document.getElementById('bestScore').textContent = bestScore;
+            document.getElementById('totalTime').textContent = totalTime;
+            document.getElementById('rankText').textContent = rank;
+        }
+
+        // Обновление прогресс-баров
+        function updateProgressBars(quizCount, totalTime) {
+            const maxQuizzes = 20; // Максимальное количество квизов для 100%
+            const maxTime = 3600; // Максимальное время для 100% (1 час)
+            
+            const quizProgress = Math.min(100, Math.round((quizCount / maxQuizzes) * 100));
+            const timeProgress = Math.min(100, Math.round((totalTime / maxTime) * 100));
+            
+            document.getElementById('quizProgress').textContent = quizProgress + '%';
+            document.getElementById('quizProgressBar').style.width = quizProgress + '%';
+            document.getElementById('timeProgress').textContent = totalTime + ' сек';
+            document.getElementById('timeProgressBar').style.width = timeProgress + '%';
+        }
+
+        // Загрузка достижений
+        async function loadAchievements(playerName) {
+            try {
+                // Загружаем достижения из localStorage
+                const savedAchievements = localStorage.getItem('quiz_achievements');
+                let earnedAchievements = [];
+                
+                if (savedAchievements) {
+                    const data = JSON.parse(savedAchievements);
+                    if (data.achievements) {
+                        // Получаем список заработанных достижений
+                        earnedAchievements = Object.entries(data.achievements)
+                            .filter(([id, achievement]) => achievement.earned)
+                            .map(([id]) => id);
+                    }
+                }
+                
+                // Отображаем достижения
+                displayAchievements(earnedAchievements);
+                
+            } catch (error) {
+                console.error('Ошибка загрузки достижений:', error);
+            }
+        }
+
+        // Отображение достижений с картинками
+        function displayAchievements(earnedAchievements) {
+            const grid = document.getElementById('achievementsGrid');
+            grid.innerHTML = '';
+            
+            achievementsData.forEach(achievement => {
+                const isUnlocked = earnedAchievements.includes(achievement.id);
+                
+                const achievementElement = document.createElement('div');
+                achievementElement.className = `achievement-item ${isUnlocked ? 'unlocked' : 'locked'}`;
+                
+                achievementElement.innerHTML = `
+                    <div class="achievement-icon">
+                        <img src="${achievement.image}" alt="${achievement.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0iIzZGNjI2NSIvPgo8cGF0aCBkPSJNMTUgMTVIMjVWMjVIMTVWMTVaIiBmaWxsPSIjRkRGRUZGIi8+CjxwYXRoIGQ9Ik0yMCAxMkMyMi4yMDkxIDEyIDI0IDEzLjc5MDkgMjQgMTZWMjBDMjQgMjIuMjA5MSAyMi4yMDkxIDI0IDIwIDI0QzE3Ljc5MDkgMjQgMTYgMjIuMjA5MSAxNiAyMFYxNkMxNiAxMy43OTA5IDE3Ljc5MDkgMTIgMjAgMTJaIiBmaWxsPSIjRkRGRUZGIi8+Cjwvc3ZnPgo='">
+                    </div>
+                    <div class="achievement-name">${achievement.name}</div>
+                `;
+                
+                grid.appendChild(achievementElement);
+            });
+        }
+
+        // Инициализация темы
+        function initTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            
+            // Устанавливаем начальную тему
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark');
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+            
+            // Обработчик переключения темы
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                const isDark = document.body.classList.contains('dark');
+                
+                if (isDark) {
+                    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
+
+        // Инициализация кнопки "Наверх"
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    </script>
+</body>
+</html>
