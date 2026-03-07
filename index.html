@@ -23,8 +23,8 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <h1>Герои.Первых</h1>
-                    <p>Карта выдающихся людей России</p>
+                    <h1>Герои Первых</h1>
+                    <p>Карта выдающихся людей ЛДНР</p>
                 </div>
                 <nav class="nav">
                     <ul>
@@ -60,17 +60,13 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">О проекте «Герои.Первых»</h2>
+            <h2 class="section-title">О проекте «Герои Первых»</h2>
             <div class="about-content">
                 <div class="about-text">
                     <p><strong>Движение Первых</strong> — общероссийское сообщество детей и молодёжи. Вместе мы открываем историю через личности. На интерактивной карте собраны не только военачальники, но и учёные, врачи, инженеры, полярники, космонавты, деятели культуры.</p>
                     <p>Кликните на регион — и узнайте, кто из героев здесь родился, жил или совершил главное дело жизни. Например, <strong>Василий Васильевич Докучаев</strong> — основоположник почвоведения, уроженец Смоленской губернии, изменивший мировую науку.</p>
 
                     <div class="about-stats">
-                        <div class="about-stat">
-                            <div class="stat-value">10</div>
-                            <div class="stat-label">Регионов РФ</div>
-                        </div>
                         <div class="about-stat">
                             <div class="stat-value">30+</div>
                             <div class="stat-label">Героев</div>
@@ -133,59 +129,19 @@
 
             <div class="map_container">
                 <div class="map_body">
-                    <img id="map_border" src="assets/img/map/border.svg">
 
                     <!-- Области карты (актуальные регионы РФ, без непризнанных и будущих) -->
-                    <div class="map-area" id="area_1">
-                        <img id="map_1" src="assets/img/map/img1.svg">
-                    </div>
-                    <div class="area-name" id="name_1">Смоленская область</div>
-
                     <div class="map-area" id="area_2">
-                        <img id="map_2" src="assets/img/map/img2.svg">
+                        <img id="map_1" src="assets/img/map/DNR.png">
                     </div>
-                    <div class="area-name" id="name_2">Ленинградская область</div>
+                    <div class="area-name" id="name_2">Донецкая Народная Республика</div>
 
-                    <div class="map-area" id="area_3">
-                        <img id="map_3" src="assets/img/map/img3.svg">
+                    <div class="map-area" id="area_1">
+                        <img id="map_2" src="assets/img/map/LNR.png">
                     </div>
-                    <div class="area-name" id="name_3">Московская область</div>
+                    <div class="area-name" id="name_1">Луганская Народная Республика</div>
 
-                    <div class="map-area" id="area_4">
-                        <img id="map_4" src="assets/img/map/img4.svg">
-                    </div>
-                    <div class="area-name" id="name_4">Рязанская область</div>
-
-                    <div class="map-area" id="area_5">
-                        <img id="map_5" src="assets/img/map/img5.svg">
-                    </div>
-                    <div class="area-name" id="name_5">Свердловская область</div>
-
-                    <div class="map-area" id="area_6">
-                        <img id="map_6" src="assets/img/map/img6.svg">
-                    </div>
-                    <div class="area-name" id="name_6">Новосибирская область</div>
-
-                    <div class="map-area" id="area_7">
-                        <img id="map_7" src="assets/img/map/img7.svg" style="width: 300px; margin-top: -25px;">
-                    </div>
-                    <div class="area-name" id="name_7">Приморский край</div>
-
-                    <div class="map-area" id="area_8">
-                        <img id="map_8" src="assets/img/map/img8.svg">
-                    </div>
-                    <div class="area-name" id="name_8">Республика Татарстан</div>
-
-                    <div class="map-area" id="area_9">
-                        <img id="map_9" src="assets/img/map/img9.svg">
-                    </div>
-                    <div class="area-name" id="name_9">Краснодарский край</div>
-
-                    <div class="map-area" id="area_10">
-                        <img id="map_10" src="assets/img/map/img10.svg">
-                    </div>
-                    <div class="area-name" id="name_10">Ростовская область</div>
-                </div>
+                    
             </div>
         </div>
     </section>
@@ -238,30 +194,6 @@
                     </div>
                 </div>
 
-                <div class="stats-progress">
-                    <h3 class="progress-title">Твой вклад в общую карту</h3>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span class="progress-label">Викторина «Герои регионов»</span>
-                            <span class="progress-value" id="quiz-score">0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="quiz-progress-bar" data-width="0"></div>
-                        </div>
-                    </div>
-                    <div class="progress-item">
-                        <div class="progress-header">
-                            <span class="progress-label">Участников Движения</span>
-                            <span class="progress-value" id="quiz-time">6 000+</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="time-progress-bar" data-width="78"></div>
-                        </div>
-                    </div>
-                    <button class="cta-button" style="position: relative; left: 40%;" onclick="goToQuiz()">
-                        <span class="button-text" id="quiz-button-text">Проверь себя</span>
-                    </button>
-                </div>
             </div>
         </div>
     </section>
