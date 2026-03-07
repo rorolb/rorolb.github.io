@@ -1,6 +1,7 @@
 .map_body {
     position: relative;
     width: 100%;
+    min-height: 730px;
     transition: var(--transition);
     background: white;
     border-radius: var(--border-radius);
@@ -8,7 +9,20 @@
     box-shadow: var(--shadow);
     border: 1px solid var(--border-color);
 }
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .map_body {
+        padding: 1rem;
+        min-height: 300px;
+    }
+}
 
+@media (max-width: 480px) {
+    .map_body {
+        padding: 0.5rem;
+        min-height: 250px;
+    }
+}
 [data-theme="dark"] .map_body {
     background: var(--card-bg);
     border-color: var(--border-color);
@@ -93,27 +107,11 @@
 }
 
 /* Позиции областей остаются без изменений */
-#area_1 { left: 51.5%; top: 30px; } 
-#area_2 { left: 74.5%; top: 70px; }
-#area_3 { left: 66.2%; top: 180px; }
-#area_4 { left: 39.2%; top: 208px; }
-#area_5 { left: 49.1%; top: 341px;  }
-#area_6 { left: 28.4%; top: 425px; }
-#area_7 { left: 51.2%; top: 600px; }
-#area_8 { left: 18%; top: 343px; }
-#area_9 { left: 8%; top: 345px; }
-#area_10 { left: 3%; top: 560px; }
+#area_1 { left: 43.5%; top: 12px; } 
+#area_2 { left: 21.5%; top: 150px; }
 
-#name_1 { left: 61.2%; top: 102px; }
-#name_2 { left: 80.1%; top: 140px; }
-#name_3 { left: 73.2%; top: 249px; }
-#name_4 { left: 55.8%; top: 278px; }
-#name_5 { left: 60.15%; top: 409px; }
-#name_6 { left: 50.8%; top: 491px; }
-#name_7 { left: 56.8%; top: 668px; }
-#name_8 { left: 33.1%; top: 410px; }
-#name_9 { left: 24.9%; top: 412px; }
-#name_10 { left: 22.7%; top: 630px; }
+#name_1 { left: 61.2%; top: 82px; }
+#name_2 { left: 40.1%; top: 150px; }
 
 .map-area:hover img {
     filter: 
